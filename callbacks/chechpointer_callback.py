@@ -5,7 +5,10 @@
 
 import os
 
-from pytorch_lightning.callbacks.base import Callback
+try:
+    from pytorch_lightning.callbacks.base import Callback
+except Exception:
+    from pytorch_lightning.callbacks import Callback
 from pytorch_lightning.utilities import rank_zero_only
 
 

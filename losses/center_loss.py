@@ -19,7 +19,8 @@ class CenterLoss(nn.Module):
         self.use_gpu = use_gpu
 
         if self.use_gpu:
-            self.centers = nn.Parameter(torch.randn(self.num_classes, self.feat_dim).cuda())
+            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            self.centers = nn.Parameter(torch.randn(self.num_classes, self.feat_dim, device=device))
         else:
             self.centers = nn.Parameter(torch.randn(self.num_classes, self.feat_dim))
 
